@@ -1,0 +1,54 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="logo-svg"
+  aria-label="kbd3v logo"
+>
+  <!-- k: Vertical line + chevron -->
+  <path d="M4 2v20M14 2L4 12l10 10" />
+  
+  <!-- b: Vertical line + bottom loop -->
+  <path d="M20 2v20h10v-10h-10" />
+  
+  <!-- d: Right vertical line + bottom loop -->
+  <path d="M46 2v20h-10v-10h10" />
+  
+  <!-- 3: Digital style 3 (Accent color) -->
+  <path 
+    d="M54 2h10v10h-5m5 0v10h-10" 
+    stroke="var(--color-accent, #8b5cf6)" 
+  />
+  
+  <!-- v: V shape -->
+  <path d="M70 2l6 20 6-20" />
+  
+  <!-- Cursor: Underscore (Accent color, blinking) -->
+  <rect 
+    x="86" 
+    y="18" 
+    width="10" 
+    height="4" 
+    fill="var(--color-accent, #8b5cf6)" 
+    stroke="none"
+  >
+    <animate 
+      attributeName="opacity" 
+      values="1;0;1" 
+      dur="1.2s" 
+      repeatCount="indefinite" 
+    />
+  </rect>
+</svg>
+
+<style>
+  .logo-svg {
+    height: 32px; /* Adjustable via CSS */
+    width: auto;
+    display: block;
+  }
+</style>

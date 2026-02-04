@@ -240,25 +240,45 @@ const typeColors: Record<string, string> = {
 			.legend {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 1rem;
+				gap: 0.5rem;
 				margin-bottom: 2rem;
-				padding: 1rem;
-				background: var(--color-bg-alt);
-				border-radius: 8px;
-				font-size: 0.8rem;
 			}
 
-			.legend-item {
+			.legend-btn {
 				display: flex;
 				align-items: center;
-				gap: 0.4rem;
+				gap: 0.5rem;
+				padding: 0.4rem 0.8rem;
+				background: transparent;
+				border: 1px solid var(--color-border);
+				border-radius: 999px;
+				font-size: 0.85rem;
 				color: var(--color-text-muted);
+				cursor: pointer;
+				transition: all 0.2s ease;
+				font-family: inherit;
+			}
+
+			.legend-btn:hover {
+				background: var(--color-bg-alt);
+				border-color: var(--color-accent);
+				color: var(--color-text-main);
+			}
+
+			.legend-btn.active {
+				background: var(--color-accent);
+				color: white;
+				border-color: var(--color-accent);
 			}
 
 			.legend-dot {
-				width: 10px;
-				height: 10px;
+				width: 8px;
+				height: 8px;
 				border-radius: 50%;
+			}
+
+			.project.hidden {
+				display: none;
 			}
 
 			.stats {
@@ -423,43 +443,46 @@ const typeColors: Record<string, string> = {
 			</div>
 
 			<div class="legend">
-				<div class="legend-item">
+				<button class="legend-btn active" data-sector="all">
+					<span>All</span>
+				</button>
+				<button class="legend-btn" data-sector="government">
 					<span class="legend-dot" style={`background: ${typeColors.government}`}></span>
 					<span>Government</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="finance">
 					<span class="legend-dot" style={`background: ${typeColors.finance}`}></span>
 					<span>Banking</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="insurance">
 					<span class="legend-dot" style={`background: ${typeColors.insurance}`}></span>
 					<span>Insurance & Pension</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="healthcare">
 					<span class="legend-dot" style={`background: ${typeColors.healthcare}`}></span>
 					<span>Healthcare</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="it">
 					<span class="legend-dot" style={`background: ${typeColors.it}`}></span>
 					<span>Information Technologies</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="energy">
 					<span class="legend-dot" style={`background: ${typeColors.energy}`}></span>
 					<span>Energy</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="construction">
 					<span class="legend-dot" style={`background: ${typeColors.construction}`}></span>
 					<span>Construction</span>
-				</div>
-				<div class="legend-item">
+				</button>
+				<button class="legend-btn" data-sector="enterprise">
 					<span class="legend-dot" style={`background: ${typeColors.enterprise}`}></span>
 					<span>Enterprise</span>
-				</div>
+				</button>
 			</div>
 
 			<div class="timeline">
 				{projects.map((project) => (
-					<div class="project" style={`--dot-color: ${typeColors[project.type]}`}>
+					<div class="project" data-type={project.type} style={`--dot-color: ${typeColors[project.type]}`}>
 						<div class="project-header">
 							<h2 class="client-name">{project.client}</h2>
 							<span class="period">{project.period}</span>
@@ -489,5 +512,30 @@ const typeColors: Record<string, string> = {
 			</div>
 		</main>
 		<Footer />
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const buttons = document.querySelectorAll('.legend-btn');
+				const projects = document.querySelectorAll('.project');
+
+				buttons.forEach(btn => {
+					btn.addEventListener('click', () => {
+						// Remove active class from all
+						buttons.forEach(b => b.classList.remove('active'));
+						// Add active to clicked
+						btn.classList.add('active');
+
+						const filter = btn.dataset.sector;
+
+						projects.forEach(project => {
+							if (filter === 'all' || project.dataset.type === filter) {
+								project.classList.remove('hidden');
+							} else {
+								project.classList.add('hidden');
+							}
+						});
+					});
+				});
+			});
+		</script>
 	</body>
 </html>
