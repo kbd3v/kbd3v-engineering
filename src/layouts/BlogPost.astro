@@ -40,6 +40,22 @@ const { title, description, pubDate, updatedDate, heroImage, ogImage } = Astro.p
 		.prose :global(p) {
 			margin-bottom: 1.5em;
 		}
+		.prose :global(h2) {
+			margin-top: 2em;
+			margin-bottom: 1em;
+		}
+		.prose :global(h3) {
+			margin-top: 1.5em;
+			margin-bottom: 0.75em;
+		}
+		.prose :global(ul),
+		.prose :global(ol) {
+			margin-bottom: 1.5em;
+			padding-left: 1.5em;
+		}
+		.prose :global(li) {
+			margin-bottom: 0.5em;
+		}
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
