@@ -8,7 +8,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+	.slice(0, 5);
 ---
 
 <!doctype html>
@@ -19,31 +19,57 @@ const posts = (await getCollection('blog'))
 	<body>
 		<Header />
 		<main>
-			<div class="hero">
+			<section class="hero">
 				<div class="avatar-container">
-					<img src="/avatar.png" alt="kbd3v avatar" class="avatar" width="120" height="120" />
+					<img src="/avatar.png" alt="Kristian Bjornebraten" class="avatar" width="140" height="140" />
 				</div>
-				<h1>kbd3v engineering</h1>
+				<h1>Kristian Bjornebraten</h1>
+				<p class="tagline">Cloud architect by day, vibe coder by night</p>
 				<p class="intro">
-					Welcome to the personal engineering blog of Kristian Bjornebraten.
-					<br />
-					Exploring code, architecture, and the future of software.
+					13 years in IT. I design Azure infrastructure for enterprises and build side projects 
+					when the sun goes down. Currently exploring how AI agents can make developers more productive.
 				</p>
-			</div>
+			</section>
 
-			<section class="intro-section">
-				<p>
-					This blog serves as a documentation of my journey through software engineering. 
-					I write about the technologies I use, the challenges I face building products like <strong>TidWerk</strong>, 
-					and my thoughts on the software industry. Expect deep dives into <strong>Svelte</strong>, <strong>TypeScript</strong>, 
-					and modern web architecture.
-				</p>
+			<section class="currently">
+				<h2>What I'm Working On</h2>
+				<div class="project-cards">
+					<a href="/blog/tidwerk/" class="project-card">
+						<span class="project-icon">&#9201;</span>
+						<div class="project-info">
+							<h3>TidWerk</h3>
+							<p>Time-tracking app for consultants. Svelte + TypeScript + Supabase.</p>
+						</div>
+						<span class="project-arrow">&rarr;</span>
+					</a>
+					<div class="project-card">
+						<span class="project-icon">&#9881;</span>
+						<div class="project-info">
+							<h3>MCP Servers</h3>
+							<p>Experimenting with AI agents and Model Context Protocol integrations.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="tech-section">
+				<h2>Tech I Use</h2>
+				<div class="tech-grid">
+					<span class="tech-pill">Azure</span>
+					<span class="tech-pill">Terraform</span>
+					<span class="tech-pill">Kubernetes</span>
+					<span class="tech-pill">TypeScript</span>
+					<span class="tech-pill">Svelte</span>
+					<span class="tech-pill">Python</span>
+					<span class="tech-pill">Go</span>
+					<span class="tech-pill highlight">MCP Servers</span>
+				</div>
 			</section>
 
 			<section class="latest-posts">
 				<div class="section-header">
-					<h2>Latest Posts</h2>
-					<a href="/blog" class="view-all">View all &rarr;</a>
+					<h2>Writing</h2>
+					<a href="/blog" class="view-all">All posts &rarr;</a>
 				</div>
 				<ul class="post-list">
 					{posts.map((post) => (
@@ -55,6 +81,9 @@ const posts = (await getCollection('blog'))
 						</li>
 					))}
 				</ul>
+				{posts.length === 0 && (
+					<p class="no-posts">First post coming soon.</p>
+				)}
 			</section>
 		</main>
 		<Footer />
@@ -62,50 +91,182 @@ const posts = (await getCollection('blog'))
 </html>
 
 <style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		padding: 4rem 1rem 3rem;
+	main {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 0 1rem;
 	}
 
-	.intro-section {
-		max-width: 720px;
-		margin: 0 auto 3rem;
-		padding: 0 1rem;
+	/* Hero Section */
+	.hero {
 		text-align: center;
-		font-size: 1.125rem;
-		line-height: 1.6;
+		padding: 4rem 0 3rem;
+	}
+
+	.avatar-container {
+		margin-bottom: 1.5rem;
+	}
+
+	.avatar {
+		border-radius: 50%;
+		border: 3px solid var(--color-accent);
+		padding: 4px;
+		background: var(--color-bg-alt);
+		box-shadow: 0 0 30px var(--color-accent-glow);
+		transition: transform 0.3s ease;
+	}
+
+	.avatar:hover {
+		transform: scale(1.05);
+	}
+
+	h1 {
+		font-size: 2.5rem;
+		margin: 0 0 0.5rem;
 		color: var(--color-text-main);
 	}
 
+	.tagline {
+		font-size: 1.25rem;
+		color: var(--color-accent);
+		margin: 0 0 1.5rem;
+		font-weight: 500;
+	}
+
+	.intro {
+		font-size: 1.1rem;
+		color: var(--color-text-muted);
+		line-height: 1.7;
+		max-width: 540px;
+		margin: 0 auto;
+	}
+
+	/* Section Headers */
+	section h2 {
+		font-size: 1.1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-text-muted);
+		margin: 0 0 1rem;
+		font-weight: 600;
+	}
+
+	/* Currently Working On */
+	.currently {
+		padding: 2rem 0;
+	}
+
+	.project-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.project-card {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem 1.25rem;
+		background: var(--color-bg-alt);
+		border-radius: 12px;
+		border: 1px solid var(--color-border);
+		text-decoration: none;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+	}
+
+	a.project-card:hover {
+		border-color: var(--color-accent);
+		transform: translateX(4px);
+	}
+
+	.project-icon {
+		font-size: 1.5rem;
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: var(--color-bg);
+		border-radius: 8px;
+		flex-shrink: 0;
+	}
+
+	.project-info {
+		flex: 1;
+	}
+
+	.project-info h3 {
+		font-size: 1rem;
+		margin: 0 0 0.25rem;
+		color: var(--color-text-main);
+		font-weight: 600;
+	}
+
+	.project-info p {
+		font-size: 0.875rem;
+		margin: 0;
+		color: var(--color-text-muted);
+	}
+
+	.project-arrow {
+		color: var(--color-accent);
+		font-size: 1.25rem;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	a.project-card:hover .project-arrow {
+		opacity: 1;
+	}
+
+	/* Tech Section */
+	.tech-section {
+		padding: 2rem 0;
+	}
+
+	.tech-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.tech-pill {
+		background: var(--color-bg-alt);
+		color: var(--color-text-muted);
+		padding: 0.4rem 0.9rem;
+		border-radius: 20px;
+		font-size: 0.85rem;
+		border: 1px solid var(--color-border);
+		transition: border-color 0.2s ease;
+	}
+
+	.tech-pill:hover {
+		border-color: var(--color-text-muted);
+	}
+
+	.tech-pill.highlight {
+		background: var(--color-accent);
+		color: white;
+		border-color: var(--color-accent);
+	}
+
+	/* Latest Posts */
 	.latest-posts {
-		max-width: 720px;
-		margin: 0 auto 4rem;
-		padding: 0 1rem;
+		padding: 2rem 0 4rem;
 	}
 
 	.section-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
-		margin-bottom: 1.5rem;
-		border-bottom: 1px solid var(--color-border);
-		padding-bottom: 0.5rem;
-	}
-
-	.section-header h2 {
-		font-size: 1.5rem;
-		color: var(--color-text-main);
-		margin: 0;
+		margin-bottom: 1rem;
 	}
 
 	.view-all {
 		color: var(--color-accent);
 		text-decoration: none;
-		font-size: 0.9rem;
-		font-weight: 600;
+		font-size: 0.875rem;
+		font-weight: 500;
 	}
 
 	.view-all:hover {
@@ -119,7 +280,11 @@ const posts = (await getCollection('blog'))
 	}
 
 	.post-list li {
-		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.post-list li:last-child {
+		border-bottom: none;
 	}
 
 	.post-link {
@@ -127,22 +292,24 @@ const posts = (await getCollection('blog'))
 		justify-content: space-between;
 		align-items: baseline;
 		text-decoration: none;
-		padding: 0.75rem 1rem;
-		border-radius: 8px;
-		background: var(--color-bg-alt);
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		padding: 1rem 0;
+		transition: padding-left 0.2s ease;
 	}
 
 	.post-link:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+		padding-left: 0.5rem;
+	}
+
+	.post-link:hover .post-title {
+		color: var(--color-accent);
 	}
 
 	.post-title {
 		margin: 0;
-		font-size: 1.1rem;
+		font-size: 1rem;
 		color: var(--color-text-main);
-		font-weight: 600;
+		font-weight: 500;
+		transition: color 0.2s ease;
 	}
 
 	.post-date {
@@ -152,49 +319,29 @@ const posts = (await getCollection('blog'))
 		margin-left: 1rem;
 	}
 
-	.avatar-container {
-		margin-bottom: 1.5rem;
-		position: relative;
-	}
-
-	.avatar {
-		border-radius: 50%;
-		border: 2px solid var(--color-accent);
-		padding: 4px;
-		background: var(--color-bg-alt);
-		box-shadow: 0 0 20px var(--color-accent-glow);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-
-	.avatar:hover {
-		transform: scale(1.05);
-		box-shadow: 0 0 30px var(--color-accent-glow);
-	}
-
-	h1 {
-		font-size: 3rem;
-		margin-bottom: 1rem;
-		background: linear-gradient(to right, var(--color-text-main), var(--color-accent));
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
-	.intro {
-		font-size: 1.25rem;
+	.no-posts {
 		color: var(--color-text-muted);
-		max-width: 600px;
-		line-height: 1.6;
+		font-style: italic;
 	}
 
+	/* Responsive */
 	@media (max-width: 600px) {
+		h1 {
+			font-size: 2rem;
+		}
+
+		.tagline {
+			font-size: 1.1rem;
+		}
+
 		.post-link {
 			flex-direction: column;
 			align-items: flex-start;
+			gap: 0.25rem;
 		}
+
 		.post-date {
 			margin-left: 0;
-			margin-top: 0.25rem;
 		}
 	}
 </style>
