@@ -24,3 +24,7 @@ pnpm-debug.log*
 .idea/
 
 .sisyphus/
+
+# Blog working files
+src/content/blog/_template.md
+src/content/blog/_guide.md
