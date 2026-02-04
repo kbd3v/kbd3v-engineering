@@ -1,0 +1,75 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="hero">
+				<div class="avatar-container">
+					<img src="/avatar.png" alt="kbd3v avatar" class="avatar" width="120" height="120" />
+				</div>
+				<h1>kbd3v engineering</h1>
+				<p class="intro">
+					Welcome to the personal engineering blog of Kristian Bjornebraten.
+					<br />
+					Exploring code, architecture, and the future of software.
+				</p>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 4rem 0;
+	}
+
+	.avatar-container {
+		margin-bottom: 1.5rem;
+		position: relative;
+	}
+
+	.avatar {
+		border-radius: 50%;
+		border: 2px solid var(--color-accent);
+		padding: 4px;
+		background: var(--color-bg-alt);
+		box-shadow: 0 0 20px var(--color-accent-glow);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.avatar:hover {
+		transform: scale(1.05);
+		box-shadow: 0 0 30px var(--color-accent-glow);
+	}
+
+	h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		background: linear-gradient(to right, var(--color-text-main), var(--color-accent));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.intro {
+		font-size: 1.25rem;
+		color: var(--color-text-muted);
+		max-width: 600px;
+		line-height: 1.6;
+	}
+</style>
