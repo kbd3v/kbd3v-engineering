@@ -7,6 +7,17 @@ import Logo from './Logo.astro';
 <header>
 	<nav>
 		<h2><a href="/"><Logo /><span class="sr-only">{SITE_TITLE}</span></a></h2>
+		<button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+			<svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<line x1="3" y1="12" x2="21" y2="12"></line>
+				<line x1="3" y1="18" x2="21" y2="18"></line>
+			</svg>
+			<svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
@@ -15,6 +26,18 @@ import Logo from './Logo.astro';
 		</div>
 	</nav>
 </header>
+
+<script>
+	const toggle = document.querySelector('.menu-toggle');
+	const links = document.querySelector('.internal-links');
+	
+	toggle?.addEventListener('click', () => {
+		const expanded = toggle.getAttribute('aria-expanded') === 'true';
+		toggle.setAttribute('aria-expanded', String(!expanded));
+		links?.classList.toggle('open');
+	});
+</script>
+
 <style>
 	header {
 		margin: 0;
@@ -42,6 +65,7 @@ import Logo from './Logo.astro';
 		max-width: var(--max-width);
 		margin: 0 auto;
 		padding: 1rem 0;
+		position: relative;
 	}
 	nav a {
 		padding: 0.5em 1em;
@@ -56,19 +80,64 @@ import Logo from './Logo.astro';
 		border-bottom-color: var(--color-accent);
 	}
 
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		color: var(--color-text-main);
+	}
+
+	.menu-toggle .icon-close {
+		display: none;
+	}
+
+	.menu-toggle[aria-expanded="true"] .icon-menu {
+		display: none;
+	}
+
+	.menu-toggle[aria-expanded="true"] .icon-close {
+		display: block;
+	}
+
 	@media (max-width: 600px) {
 		header {
 			padding: 0 0.75em;
 		}
 		nav {
 			padding: 0.75rem 0;
+			flex-wrap: wrap;
 		}
 		h2 {
 			font-size: 1em;
 		}
-		nav a {
-			padding: 0.5em 0.6em;
-			font-size: 0.9em;
+
+		.menu-toggle {
+			display: block;
+		}
+
+		.internal-links {
+			display: none;
+			width: 100%;
+			flex-direction: column;
+			padding-top: 1rem;
+			border-top: 1px solid var(--color-border);
+			margin-top: 0.75rem;
+		}
+
+		.internal-links.open {
+			display: flex;
+		}
+
+		.internal-links a {
+			padding: 0.75rem 0;
+			border-bottom: none;
+		}
+
+		.internal-links a.active {
+			border-bottom: none;
+			color: var(--color-accent);
 		}
 	}
 
