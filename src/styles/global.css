@@ -16,10 +16,15 @@
 	--radius: 8px;
 }
 
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 html {
 	background-color: var(--color-bg);
 	color: var(--color-text-main);
 	font-family: var(--font-body);
+	overflow-x: hidden;
 }
 
 body {
