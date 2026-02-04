@@ -52,6 +52,18 @@ const { title, description, pubDate, updatedDate, heroImage, ogImage } = Astro.p
 			.last-updated-on {
 				font-style: italic;
 			}
+
+			@media (max-width: 600px) {
+				.prose {
+					padding: 0.5em;
+				}
+				.title {
+					padding: 0.5em 0;
+				}
+				.title h1 {
+					font-size: 1.5rem;
+				}
+			}
 		</style>
 	</head>
 

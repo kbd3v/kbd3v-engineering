@@ -390,12 +390,52 @@ const posts = (await getCollection('blog'))
 
 	/* Responsive */
 	@media (max-width: 600px) {
+		.hero {
+			padding: 2.5rem 0 2rem;
+		}
+
+		.avatar {
+			width: 100px;
+			height: 100px;
+		}
+
 		h1 {
-			font-size: 2rem;
+			font-size: 1.75rem;
 		}
 
 		.tagline {
-			font-size: 1.1rem;
+			font-size: 1rem;
+		}
+
+		.intro {
+			font-size: 1rem;
+		}
+
+		section h2 {
+			font-size: 1rem;
+		}
+
+		.project-card {
+			padding: 0.875rem 1rem;
+		}
+
+		.project-icon {
+			width: 2rem;
+			height: 2rem;
+			font-size: 1.25rem;
+		}
+
+		.project-info h3 {
+			font-size: 0.95rem;
+		}
+
+		.project-info p {
+			font-size: 0.8rem;
+		}
+
+		.tech-pill {
+			padding: 0.3rem 0.7rem;
+			font-size: 0.8rem;
 		}
 
 		.post-link {
