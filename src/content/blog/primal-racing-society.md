@@ -2,7 +2,6 @@
 title: "PRS: Building a Website for a Car Community"
 description: "How I built a website for Primal Racing Society, a Norwegian car community I started in 2023, organizing driveouts, trackdays, and Cars & Coffee meetups."
 pubDate: "2026-02-07"
-heroImage: "./prs-hero.png"
 ---
 
 I started Primal Racing Society back in 2023 because I wanted an excuse to drive good roads with good people. Turns out a lot of other car nerds in Norway wanted the same thing. We started organizing driveouts, trackdays, and Cars & Coffee meetups, and the community just kept growing. Our last driveout pulled 215 RSVPs. Not bad for a group that started with a few guys and a Facebook page.
