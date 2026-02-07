@@ -53,7 +53,7 @@ File-based: `src/pages/` maps directly to URL paths. Dynamic route `[...slug].as
 
 ### Blog Posts
 
-Posts follow a style guide (`_guide.md`): hook, solution, features, tech stack, closing. First person, conversational tone, 300–600 words. Use `##` for sections, bold labels in lists (`- **Label:** description`).
+Posts follow a style guide (`_guide.md`): hook, solution, features, tech stack, closing. First person, conversational tone, 300-600 words. Use `##` for sections, bold labels in lists (`- **Label:** description`). Never use em dashes. Use periods, commas, or parentheses instead.
 
 ### Images
 

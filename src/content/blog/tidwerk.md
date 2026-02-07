@@ -4,7 +4,7 @@ description: "Introducing TidWerk, a streamlined time tracking application for c
 pubDate: "2026-02-04"
 ---
 
-I got tired of juggling spreadsheets and fighting clunky, over-engineered tools every time I needed to bill a client. Most time trackers are either too simple to handle complex consulting rates or too complex for a solo developer or small team to use quickly.
+I got tired of juggling spreadsheets and fighting clunky, over-engineered tools every time I needed to bill a client. Most time trackers are either too simple to handle complex consulting rates, or too complex for a solo developer or small team to use quickly.
 
 That's why I built **TidWerk** (Norwegian for "time work"). It's a time tracking app designed specifically for consultants who need a fast, reliable way to manage their hours and get paid.
 
