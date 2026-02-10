@@ -25,6 +25,10 @@ pnpm-debug.log*
 
 .sisyphus/
 
+# Agent instructions
+AGENTS.md
+claude.md
+
 # Blog working files
 src/content/blog/_template.md
 src/content/blog/_guide.md
